@@ -9,10 +9,19 @@ function setup() {
   rect(0, 300, 900, 10);
   rect(0, 600, 900, 10);
 
-  rect(100, 10, 10, 280);
-  rect(200, 10, 10, 280);
-  rect(10, 100, 280, 10);
-  rect(10, 200, 280, 10);
+  board(0, 0);
+  board(300, 0);
+  board(600, 0);
+  board(0, 300);
+  board(300, 300);
+  board(600, 300);
+  board(0, 600);
+  board(300, 600);
+  board(600, 600);
+
+
+  plus(5, 6);
+  O(3, 4);
 }
 
 function draw() {
@@ -22,6 +31,15 @@ function draw() {
     rect(600, 0, 10, 900);
     rect(0, 300, 900, 10);
     rect(0, 600, 900, 10); 
+    board(0, 0);
+    board(300, 0);
+    board(600, 0);
+    board(0, 300);
+    board(300, 300);
+    board(600, 300);
+    board(0, 600);
+    board(300, 600);
+    board(600, 600); 
   });
 }
 
