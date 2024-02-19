@@ -6,15 +6,16 @@ function setup() {
   stroke(255, 255, 255);
   rect(300, 0, 10, 900);
   rect(600, 0, 10, 900);
-
-  O(100, 100);
-  plus(100, 100);
+  rect(0, 300, 900, 10);
+  rect(0, 600, 900, 10);
 }
 
 function draw() {
   socket.on("update", msg => {
     background(0);
     rect(300, 0, 10, 900);
+    rect(0, 300, 900, 10);
+    rect(0, 600, 900, 10); 
     rect(600, 0, 10, 900);
   });
 }
