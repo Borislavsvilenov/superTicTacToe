@@ -1,3 +1,9 @@
-const io = require('socket.io');
+const http = require('http').createServer();
+const io = require('socket.io')(http, {cors: { origin: "*" }});
 
-const socket =
+io.on("connection", (socket) => {
+
+});
+
+
+http.listen(8080, () => console.log('listening on http://localhost:8081'));
