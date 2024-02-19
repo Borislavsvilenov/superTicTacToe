@@ -8,15 +8,20 @@ function setup() {
   rect(600, 0, 10, 900);
   rect(0, 300, 900, 10);
   rect(0, 600, 900, 10);
+
+  rect(100, 10, 10, 280);
+  rect(200, 10, 10, 280);
+  rect(10, 100, 280, 10);
+  rect(10, 200, 280, 10);
 }
 
 function draw() {
   socket.on("update", msg => {
     background(0);
     rect(300, 0, 10, 900);
+    rect(600, 0, 10, 900);
     rect(0, 300, 900, 10);
     rect(0, 600, 900, 10); 
-    rect(600, 0, 10, 900);
   });
 }
 
