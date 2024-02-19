@@ -1,9 +1,15 @@
+const socket = io(`http://${window.location.hostname}:8080`); 
+
 function setup() {
- createCanvas(800, 800); 
+  createCanvas(800, 800);
+  background(0);
 }
 
 function draw() {
-  background(0);
+  socket.on("update", msg => {
+    background(0);
+
+  });
 }
 
 
