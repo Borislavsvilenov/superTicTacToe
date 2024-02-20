@@ -1,22 +1,22 @@
-function plus(x ,y) {
+function X(x, y, size) {
   stroke(255);
-  rect((100 * x) + 30, (100 * y) + 52, 50, 6);
-  rect((100 * x) + 52, (100 * y) + 30, 6, 50);
+  line(x, y, x + size, y + size);
+  line(x + size, y, x, y + size);
 }
 
 
-function O(x, y) {
-  stroke(255)
-  circle((100 * x) + 55, (100 * y) + 55, 50);
+function O(x, y, size) {
+  stroke(255);
+  strokeWeight(size);
+  point(x + size / 2, y + size / 2);
   stroke(0);
-  strokeWeight(40);
-  point((100 * x) + 55, (100 * y) + 55);
-  strokeWeight(1);
+  strokeWeight(size / 2);
+  point(x + size / 2, y + size / 2);
 }
 
 function board(x, y, size) {
   stroke(255);
-  strokeWeight(size / 35);
+  strokeWeight(size / 100);
   let cellSize = size / 3;
   
   for(let i = 0; i < 3; i++) {

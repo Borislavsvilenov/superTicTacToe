@@ -1,7 +1,7 @@
 const socket = io(`http://${window.location.hostname}:8080`); 
 
-let n = 6;
-let boardSize = 300;
+let n = 2;
+let boardSize = 100;
 let canvasSize = boardSize * n;
 
 function setup() {
