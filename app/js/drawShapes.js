@@ -14,26 +14,27 @@ function O(x, y) {
   strokeWeight(1);
 }
 
-function board(x, y) {
+function board(x, y, size) {
   stroke(255);
-  rect(x + 100, y + 20, 10, 270);
-  rect(x + 200, y + 20, 10, 270);
-  rect(x + 20, y + 100, 270, 10);
-  rect(x + 20, y + 200, 270, 10);
+  strokeWeight(size / 35);
+  let cellSize = size / 3;
+  
+  for(let i = 0; i < 3; i++) {
+    line(x + cellSize, y + size / 10, x + cellSize, y + 9/10 * size);
+    line(x + 2 * cellSize, y + size / 10, x + 2 * cellSize, y + 9/10 * size);
+    line(x + size / 10, y + cellSize, x + 9/10 * size, y + cellSize);
+    line(x + size / 10, y + 2 * cellSize, x + 9/10 * size, y + 2 * cellSize);
+  }
 }
 
-function Boards() {
-    rect(300, 0, 10, 900);
-    rect(600, 0, 10, 900);
-    rect(0, 300, 900, 10);
-    rect(0, 600, 900, 10); 
-    board(0, 0);
-    board(300, 0);
-    board(600, 0);
-    board(0, 300);
-    board(300, 300);
-    board(600, 300);
-    board(0, 600);
-    board(300, 600);
-    board(600, 600); 
+function NestBoards(n, x, y, size) {
+  board(x, y, size);
+
+  if(n > 1) {
+    for(let i = 0; i < 3; i++) {
+      for(let j = 0; j < 3; j++) {
+        NestBoards(n - 1, x + (i * size / 3), y + (j * size / 3), size / 3);
+      }
+    }
+  }
 }
