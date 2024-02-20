@@ -13,7 +13,7 @@ function setup() {
 function draw() {
   socket.on("update", msg => {
     background(0);
-    drawBoards(n, 0, 0, boardSize);
+    NestBoards(n, 0, 0, boardSize * n);
   });
 
   if(mouseIsPressed == true) {
