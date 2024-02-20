@@ -1,3 +1,19 @@
+function calculateIndex(x, y, size, level, indices) {
+  if (level === 0) {
+    return indices;
+  }
+  
+  let cellSize = size / 3;
+  let row = floor(y / cellSize);
+  let col = floor(x / cellSize);
+  let index = row * 3 + col;
+  indices.push(index);
+
+  let newX = x % cellSize;
+  let newY = y % cellSize;
+  return calculateIndex(newX, newY, cellSize, level - 1, indices);
+}
+
 function X(x, y, size) {
   stroke(255);
   line(x, y, x + size, y + size);

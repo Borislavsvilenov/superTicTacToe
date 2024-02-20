@@ -5,24 +5,14 @@ class Board {
     this.subDivided = false;
   }
 
-  move(action, x, y) {
-    let idx = x + 3 * y;
-    let gidx = gx + 3 * gy;
+  move(action, idxes) {
+    let Zeroidx = idxes[0];
+    idxes.splice(0, 1);
 
-    if(subDivided) {
-      if(this.game[gidx].game[idx] === 0) {
-        this.game[gidx].game[idx] = action;
-        return 0;
-      } else {
-        return -1;
-      }
+    if(this.subDivided) {    
+      this.game[Zeroidx].move(action, idxes);
     } else {
-      if(this.game[idx] === 0) {
-        this.game[idx] = action;
-        return 0;
-      } else {
-        return -1;
-      }
+      this.game[Zeroidx] = action;
     }
   }
 
@@ -39,9 +29,7 @@ class Board {
       this.winner = (g[0] === 1 || g[1] === 1 || g[2] === 1 ||
                      g[3] === 1 || g[4] === 1 || g[5] === 1 ||
                      g[6] === 1 || g[7] === 1 || g[8] === 1) ? 1 : -1;
-      return true;
     }
-    return false;
   }
   
   subDivide() {
