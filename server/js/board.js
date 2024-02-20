@@ -2,16 +2,27 @@ class Board {
   constructor() {
     this.game = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.winner = 0;
+    this.subDivided = false;
   }
 
   move(action, x, y) {
     let idx = x + 3 * y;
-    
-    if(this.game[idx] === 0) {
-      this.game[idx] = action;
-      return 0;
+    let gidx = gx + 3 * gy;
+
+    if(subDivided) {
+      if(this.game[gidx].game[idx] === 0) {
+        this.game[gidx].game[idx] = action;
+        return 0;
+      } else {
+        return -1;
+      }
     } else {
-      return -1;
+      if(this.game[idx] === 0) {
+        this.game[idx] = action;
+        return 0;
+      } else {
+        return -1;
+      }
     }
   }
 
@@ -31,6 +42,13 @@ class Board {
       return true;
     }
     return false;
+  }
+  
+  subDivide() {
+    for(let i = 0; i < this.game.length; i++) {
+      this.game[i] = new Board();
+    } 
+    this.subDivided = true;
   }
 }
 
