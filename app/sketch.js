@@ -1,7 +1,7 @@
 const socket = io(`http://${window.location.hostname}:8080`); 
 
 let n = 2;
-let boardSize = 100;
+let boardSize = 300;
 let canvasSize = boardSize * n;
 let clicked = false;
 

@@ -2,12 +2,17 @@ const http = require('http').createServer();
 const io = require('socket.io')(http, {cors: { origin: "*" }});
 
 const Board = require('./js/board.js');
+const createOutput = require('./js/output.js');
 
 let game = new Board();
 game.subDivide();
 
 let player1 = undefined;
 let player2 = undefined;
+
+let turn = 1;
+
+let output = [];
 
 io.on("connection", (socket) => {
   if(player1 === undefined) {
@@ -21,13 +26,23 @@ io.on("connection", (socket) => {
   }
 
   socket.on("in", msg => {
-    if(socket.id === player1) {
-      game.move(+1, msg);
-    } else if(socket.id === player2) {
-      game.move(-1, msg);
+    if(turn == 1) {
+      if(socket.id === player1) {
+        game.move(+1, msg);
+        turn = -1;
+      }
     }
-
-    game.checkWin()
+    if(turn == -1) {
+      if(socket.id === player2) {
+        game.move(-1, msg);
+        turn = 1;
+      }
+    }
+  
+    game.checkWin();
+    output = createOutput(game);
+    console.log(output);
+    io.emit('out', output);
   });
 
   socket.on('disconnect', () => {
