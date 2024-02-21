@@ -14,6 +14,23 @@ function calculateIndex(x, y, size, level, indices) {
   return calculateIndex(newX, newY, cellSize, level - 1, indices);
 }
 
+function calculatePosFromIndex(index, size, level) {
+  if (level === 0) {
+    return { x: 0, y: 0 };
+  }
+
+  let cellSize = size / 3;
+  let row = Math.floor(index / 3);
+  let col = index % 3;
+  let posX = col * cellSize + cellSize / 2;
+  let posY = row * cellSize + cellSize / 2;
+  
+  let parentPos = calculatePosFromIndex(Math.floor(index / 9), size, level - 1);
+  
+  return { x: parentPos.x + posX, y: parentPos.y + posY };
+}
+
+
 function X(x, y, size) {
   stroke(255);
   line(x, y, x + size, y + size);
