@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-  socket.on("update", msg => {
+  socket.on("out", msg => {
     background(0);
     NestBoards(n, 0, 0, boardSize * n);
   });
@@ -21,7 +21,6 @@ function draw() {
       let idxes = [];
 
       socket.emit("in", calculateIndex(mouseX, mouseY, boardSize * n, n, idxes));
-      console.log(idxes);
       clicked = true;
     }
   } else if(!mouseIsPressed) {

@@ -7,7 +7,7 @@ function createOutput(game) {
       output[i] = createOutput(game.game[i]);
     } 
   }
-  return(output);
+  return output;
 }
 
 module.exports = createOutput;

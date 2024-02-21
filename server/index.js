@@ -41,7 +41,6 @@ io.on("connection", (socket) => {
   
     game.checkWin();
     output = createOutput(game);
-    console.log(output);
     io.emit('out', output);
   });
 
