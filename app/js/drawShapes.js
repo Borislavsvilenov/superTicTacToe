@@ -14,8 +14,25 @@ function calculateIndex(x, y, size, level, indices) {
   return calculateIndex(newX, newY, cellSize, level - 1, indices);
 }
 
-function calculatePosFromIndex(index, size, level) {
+function calculatePosFromIndex(index, size, lvl) {
+  let pos = {x: 0, y: 0};
+  let p = {x: 0, y: 0};
 
+  let col = index[0] % lvl;
+  let row = Math.floor(index[0] / lvl);
+
+  let cellSize = size / 3;
+
+  let pos.x += cellSize * col;
+  let pos.y += cellSize * row;
+
+  if(lvl !== 1) {
+    p = calculatePosFromIndex(index.slice(1), size / 3, lvl - 1);
+  }
+  
+  pos.x += p.x;
+  pos.y += p.y;
+  return pos;
 } 
 
 function findAllPathsInNestedLists(obj, indices = []) {
