@@ -18,13 +18,13 @@ function calculatePosFromIndex(index, size, lvl) {
   let pos = {x: 0, y: 0};
   let p = {x: 0, y: 0};
 
-  let col = index[0] % lvl;
-  let row = Math.floor(index[0] / lvl);
+  let col = index[0] % 3;
+  let row = Math.floor(index[0] / 3);
 
   let cellSize = size / 6;
 
-  pos.x += cellSize * col;
-  pos.y += cellSize * row;
+  pos.x = cellSize * col * 2;
+  pos.y = cellSize * row * 2;
 
   if(lvl !== 1) {
     p = calculatePosFromIndex(index.slice(1), size / 3, lvl - 1);
@@ -52,6 +52,7 @@ function findAllPathsInNestedLists(obj, indices = []) {
 }
 
 function X(x, y, size) {
+  size *= 0.8;
   stroke(255);
   line(x, y, x + size, y + size);
   line(x + size, y, x, y + size);
