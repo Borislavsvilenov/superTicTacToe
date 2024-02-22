@@ -18,6 +18,7 @@ function setup() {
 function draw() {
   socket.on("out", msg => {
     let paths = findAllPathsInNestedLists(msg);
+    console.log(paths);
     background(0);
     NestBoards(n, 0, 0, boardSize * n);
     for(let i = 0; i < paths.length; i++) {
