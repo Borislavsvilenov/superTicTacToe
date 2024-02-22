@@ -21,10 +21,10 @@ function calculatePosFromIndex(index, size, lvl) {
   let col = index[0] % lvl;
   let row = Math.floor(index[0] / lvl);
 
-  let cellSize = size / 3;
+  let cellSize = size / 6;
 
-  let pos.x += cellSize * col;
-  let pos.y += cellSize * row;
+  pos.x += cellSize * col;
+  pos.y += cellSize * row;
 
   if(lvl !== 1) {
     p = calculatePosFromIndex(index.slice(1), size / 3, lvl - 1);

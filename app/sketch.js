@@ -22,8 +22,8 @@ function draw() {
     NestBoards(n, 0, 0, boardSize * n);
     for(let i = 0; i < paths.length; i++) {
       if(paths[i][0] == 1) {
-        let pos = calculatePosFromIndex(paths[i], boardSize * n, n);
-        X(pos.x, pos.y, boardSize / Math.pow(3, n-1));
+        let pos = calculatePosFromIndex(paths[i].slice(1), boardSize * n, n);
+        X(pos.x, pos.y, boardSize / (Math.pow(3, n-1)*2));
       }
     }
   });
