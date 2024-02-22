@@ -64,8 +64,9 @@ function O(x, y, size) {
   strokeWeight(size);
   point(x + size / 2, y + size / 2);
   stroke(0);
-  strokeWeight(size / 2);
+  strokeWeight(size / 1.2);
   point(x + size / 2, y + size / 2);
+  strokeWeight(1);
 }
 
 function board(x, y, size) {
