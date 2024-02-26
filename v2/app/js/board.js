@@ -22,10 +22,10 @@ class Board {
     let cellSize = this.size / 3;
     stroke(255);
     strokeWeight(cellSize);
-    point(x + cellSize/2, y + cellSize/2);
+    point(y + cellSize/2, x + cellSize/2);
     strokeWeight(cellSize - 20);
     stroke(0);
-    point(x + cellSize/2, y + cellSize/2);
+    point(y + cellSize/2, x + cellSize/2);
   }
 
   subdivide() {
@@ -41,7 +41,9 @@ class Board {
     if(typeof this.moves[pos[0][0]][pos[1][0]] == "object") {
       this.moves[pos[0][0]][pos[1][0]].move(mv, [pos[0].slice(1), pos[1].slice(1)]); 
     } else {
-      this.moves[pos[0][0]][pos[1][0]] = mv;
+      if(this.moves[pos[0][0]][pos[1][0]] == 0) {
+        this.moves[pos[0][0]][pos[1][0]] = mv;
+      }
     }
   }
 

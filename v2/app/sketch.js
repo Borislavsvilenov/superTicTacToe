@@ -1,7 +1,7 @@
-const socket = io(`http://${window.location.hostname}:8080`); 
-
 let game = new Board(900, 0, 0);
 game.subdivide();
+
+let turn = 1;
 
 function setup() {
   createCanvas(900, 900);
@@ -10,12 +10,18 @@ function setup() {
 }
 
 function draw() {
-  socket.on("update", msg) {
-    for(let i = 0; i < msg.length i++) {
-      game.move(msg[i][0], msg[i].slice(1));
-    }
-    background(0);
-    game.drawBoard();
+  background(0);
+  game.checkWin();
+  game.drawBoard();
+}
+
+function mouseClicked() {
+  if(turn == 1) {
+    game.move(1, getIDX(game, mouseY, mouseX));
+    turn = -1;
+  } else if(turn == -1) {
+    game.move(-1, getIDX(game, mouseY, mouseX));
+    turn = 1;
   }
 }
 
