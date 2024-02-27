@@ -31,6 +31,21 @@ class Board {
        g[2][0] + g[1][1] + g[0][2] === -3) {this.winner = -1}
   }
 
+  restrictMoves(pos) {
+
+    this.refreshMoves();
+
+    let restriction = [[-1], [-1]];
+    restriction[0] = pos[0].slice(1); 
+    restriction[1] = pos[1].slice(1);
+    
+    if(typeof this.moves[restriction[0][0]][restriction[1][0]] !== "object") {
+      restriction = [[-1], [-1]];
+    }
+
+    return restriction;
+  }
+
   refreshMoves() {
     let g = this.moves;
     for(let i = 0; i < 3; i++) {
@@ -67,16 +82,22 @@ class Board {
   subdivide() {
     for(let i = 0; i < 3; i++) {
       for(let j = 0; j < 3; j++) {
-        this.moves[i][j] = new Board(this.size / 3, i * this.size / 3, j * this.size / 3);
+        this.moves[i][j] = new Board(this.size / 3, i * this.size / 3 + this.x, j * this.size / 3 + this.y);
       }
     }
     this.subD = true;
   }
 
-  move(mv, pos) {
+  move(mv, pos, rest) {
     let ret = true;
     if(typeof this.moves[pos[0][0]][pos[1][0]] == "object") {
-      ret = this.moves[pos[0][0]][pos[1][0]].move(mv, [pos[0].slice(1), pos[1].slice(1)]); 
+      if(pos[0][0] == rest[0][0] && pos[1][0] == rest[1][0]) {
+        ret = this.moves[pos[0][0]][pos[1][0]].move(mv, [pos[0].slice(1), pos[1].slice(1)], [rest[0].slice(1), rest[1].slice(1)]); 
+      } else if(rest[0][0] == -1 || rest[1][0] == -1) {
+        ret = this.moves[pos[0][0]][pos[1][0]].move(mv, [pos[0].slice(1), pos[1].slice(1)], [rest[0].slice(1), rest[1].slice(1)]); 
+      } else {
+        ret = false;
+      }
     } else {
       if(this.moves[pos[0][0]][pos[1][0]] == 0) {
         this.moves[pos[0][0]][pos[1][0]] = mv;
