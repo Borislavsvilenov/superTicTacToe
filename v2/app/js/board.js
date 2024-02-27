@@ -10,6 +10,47 @@ class Board {
     this.y = y;
   }
 
+  checkWin() {
+    let g = this.moves
+    if (g[0][0] + g[0][1] + g[0][2] === 3 ||
+        g[1][0] + g[1][1] + g[1][2] === 3 ||
+        g[2][0] + g[2][1] + g[2][2] === 3 ||
+        g[0][0] + g[1][0] + g[2][0] === 3 ||
+        g[0][1] + g[1][1] + g[2][1] === 3 ||
+        g[0][2] + g[1][2] + g[2][2] === 3 ||
+        g[0][0] + g[1][1] + g[2][2] === 3 ||
+        g[2][0] + g[1][1] + g[0][2] === 3) {
+      this.win();
+    }
+  }
+
+  win() { 
+    let g = this.moves;
+    this.winner = (g[0][0] + g[0][1] + g[0][2] === 3 ||
+                   g[1][0] + g[1][1] + g[1][2] === 3 ||
+                   g[2][0] + g[2][1] + g[2][2] === 3 ||
+                   g[0][0] + g[1][0] + g[2][0] === 3 ||
+                   g[0][1] + g[1][1] + g[2][1] === 3 ||
+                   g[0][2] + g[1][2] + g[2][2] === 3 ||
+                   g[0][0] + g[1][1] + g[2][2] === 3 ||
+                   g[2][0] + g[1][1] + g[0][2] === 3) ? 1 : -1;
+  }
+
+  refreshMoves() {
+    let g = this.moves;
+    for(let i = 0; i < 3; i++) {
+      for(let j = 0; j < 3; j++) {
+        if(typeof g[i][j] == "object") {
+          g[i][j].checkWin();
+          if(g[i][j].winner !== 0) {
+            g[i][j] = g[i][j].winner;
+          }
+        }
+      }
+    }
+    this.checkWin();
+  }
+
   X(x, y) {
     let cellSize = this.size / 3;
     stroke(255);
@@ -52,10 +93,10 @@ class Board {
     
     stroke(255);
     strokeWeight(this.size * 0.01);
-    line(this.x + cellSize, this.y, this.x + cellSize, this.y + this.size);
-    line(this.x + cellSize * 2, this.y, this.x + cellSize * 2, this.y + this.size);
-    line(this.x, this.y + cellSize, this.x + this.size, this.y + cellSize);
-    line(this.x, this.y + cellSize * 2, this.x + this.size, this.y + cellSize * 2);
+    line(this.y + cellSize, this.x, this.y + cellSize, this.x + this.size);
+    line(this.y + cellSize * 2, this.x, this.y + cellSize * 2, this.x + this.size);
+    line(this.y, this.x + cellSize, this.y + this.size, this.x + cellSize);
+    line(this.y, this.x + cellSize * 2, this.y + this.size, this.x + cellSize * 2);
 
     for(let i = 0; i < 3; i++) {
       for(let j = 0; j < 3; j++) {

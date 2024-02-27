@@ -24,7 +24,7 @@ class Board {
           g[i].checkWin();
           if(g[i].winner == 1 || g[i].winner == -1) {
             g[i] = g[i].winner;
-          }
+    }
         }
       }
     }

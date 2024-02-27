@@ -11,7 +11,7 @@ function setup() {
 
 function draw() {
   background(0);
-  game.checkWin();
+  game.refreshMoves();
   game.drawBoard();
 }
 
