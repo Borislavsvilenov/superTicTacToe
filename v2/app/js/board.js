@@ -113,7 +113,7 @@ class Board {
     let cellSize = this.size / 3;
     
     stroke(255);
-    strokeWeight(this.size * 0.01);
+    strokeWeight(this.size * 0.02);
     line(this.y + cellSize, this.x, this.y + cellSize, this.x + this.size);
     line(this.y + cellSize * 2, this.x, this.y + cellSize * 2, this.x + this.size);
     line(this.y, this.x + cellSize, this.y + this.size, this.x + cellSize);
