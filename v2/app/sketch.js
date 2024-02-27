@@ -16,12 +16,19 @@ function draw() {
 }
 
 function mouseClicked() {
-  if(turn == 1) {
-    game.move(1, getIDX(game, mouseY, mouseX));
-    turn = -1;
-  } else if(turn == -1) {
-    game.move(-1, getIDX(game, mouseY, mouseX));
-    turn = 1;
+  let ret = true;
+  if(game.winner == 0) {
+    if(turn == 1) {
+      ret = game.move(1, getIDX(game, mouseY, mouseX));
+      if(ret) {
+        turn = -1;
+      }
+    } else if(turn == -1) {
+      ret = game.move(-1, getIDX(game, mouseY, mouseX));
+      if(ret) {
+        turn = 1;
+      }
+    }
   }
 }
 
