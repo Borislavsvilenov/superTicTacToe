@@ -1,3 +1,4 @@
+const winner = document.getElementById("winner");
 let game = new Board(900, 0, 0);
 game.subdivide();
 
@@ -32,6 +33,10 @@ function mouseClicked() {
         restr = game.restrictMoves(getIDX(game, mouseY, mouseX));
       }
     }
+  } else if(game.winner == 1) {
+    winner.textContent = "player " + 1 + " won!";
+  } else if(game.winner == -1) {
+    winner.textContent = "player " + 2 + " won!";
   }
 }
 
